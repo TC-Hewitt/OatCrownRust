@@ -15,7 +15,7 @@ multi-line command/script
 ```
 >further comments/description.
 
-## Generating synteny plots with gggenomes
+## Assessing variation with population SNP counts
 
 preamble/description.
 
@@ -45,7 +45,7 @@ multi-line command/script
 ```
 >further comments/description.
 
-## Measuring variation based on population SNP counts
+## Generating synteny plots with gggenomes
 
 preamble/description.
 
