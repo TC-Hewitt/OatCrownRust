@@ -112,7 +112,8 @@ cr_collection.vcf > cr_collection.QA.vcf
 **2. feature filtering** - we are only interested in biallelic SNPs likely to be informative, so we will apply additional filtering to the VCF using [BCFtools](https://github.com/samtools/bcftools)
 ```
 module load bcftools/1.15.1
-bcftools view -m2 -M2 -v snps -i 'F_MISSING < 0.1' -e 'MAF < 0.05' --output-type z -o cr_collection.QA.biaSNPs.vcf.gz cr_collection.QA.vcf
+bcftools view -m2 -M2 -v snps -i 'F_MISSING < 0.1' -e 'MAF < 0.05' \
+--output-type z -o cr_collection.QA.biaSNPs.vcf.gz cr_collection.QA.vcf
 ```
 >_-m2 -M2_, keep sites with min 2 alleles and max 2 alleles<br />
 >_-v snps_, keep SNPs only (omits indels and MNPs)<br />
