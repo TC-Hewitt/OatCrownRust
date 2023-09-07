@@ -2,7 +2,7 @@
 
 ## Read mapping statistics and coverage plots
 
-After FASTQ files are mapped to a reference FASTA with an aligner such as BWA or HISAT2, simple count and coverage statistics are obtained from the subsequent SAM/BAM files with the following scripts using samtools output piped into AWK operations
+After FASTQ files are mapped to a reference FASTA with an aligner such as [BWA](https://github.com/lh3/bwa) or [HISAT2](https://github.com/DaehwanKimLab/hisat2), simple count and coverage statistics are obtained from the subsequent SAM/BAM files with the following scripts using [SAMtools](https://github.com/samtools/samtools) output piped into AWK operations
 
 **1. for a single BAM, count total number of mapped reads and store in var _map_count_**
 ```
@@ -32,7 +32,7 @@ samtools depth -a sample01.bam | awk -v OFS='\t' -v sname="sample01" -v nmap="$m
 >    percent of all positions with coverage over 10X (_c*100/NR_)<br />
 <br />
 
-multiple BAM files can be processed in parrallel to save time. For example, below is an array job script for 100 samples using the Slurm Workload Manager on a shared cluster
+multiple BAM files can be processed in parrallel to save time. For example, below is an array job script for 100 samples using the [Slurm Workload Manager](https://github.com/SchedMD/slurm) on a shared cluster
 ```
 #!/usr/bin/env bash
 
@@ -57,7 +57,7 @@ else
 fi
 ```
 >the above can be wrapped in file _covstats.sh_ and run as _>sbatch covstats.sh_ <br />
->the output line of each sample is written to seperate temp files assignd _temp0_ to _temp99_ <br />
+>the output line of each sample is written to seperate temp files assigned _temp0_ to _temp99_ <br />
 <br />
 
 **3. the output stats from each sample can now be collated into a single tab-delim table by creating a header and concatenating with all _temp_ files**
