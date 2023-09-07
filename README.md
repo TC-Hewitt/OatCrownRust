@@ -89,7 +89,7 @@ dev.off()
 
 ## Assessing variation with population SNP counts
 
-Here we want to obtain the number of variable SNP sites (VSS) in a population of crown rust fungi. These are genomic positions at which SNP genotypes are heterogeneous within a population (i.e. not all individuals possess the same genotype) and can therefore be used as a relative measure of overall genotypic diversity when comparing populations (provided each population is called against the same reference genome). Variant calling can be performed independently for each population (represented by collections of fungal isolates) using the same reference with appropriate filters applied. 
+Here we want to obtain the number of variable SNP sites (VSS) in a populations of crown rust fungi. These are genomic positions at which SNP genotypes are heterogeneous within a population (i.e. not all individuals possess the same genotype) and can therefore be used as a relative measure of overall genotypic diversity when comparing populations (provided each population is called against the same reference genome). Variant calling can be performed independently for each population (represented by collections of fungal isolates) using the same reference with appropriate filters applied. 
 
 In this example, we are comparing a population of North American (US) and South African (SA) isolates. However, variant calling was performed simultaneously on all isolates using [FreeBayes](https://github.com/freebayes/freebayes) to produce a single, multisample VCF containing variant data from 20 US isolates and 29 SA isolates. Extra steps are required to subset the US and SA populations and apply additional filtering before both the total SNP sites (TSS) and VSS of each population are counted.
 
@@ -114,13 +114,13 @@ cr_collection.vcf > cr_collection.QA.vcf
 module load bcftools/1.15.1
 bcftools view -m2 -M2 -v snps -i 'F_MISSING < 0.1' -e 'MAF < 0.05' --output-type z -o cr_collection.QA.biaSNPs.vcf.gz cr_collection.QA.vcf
 ```
->-m2 -M2, keep sites with min 2 alleles and max 2 alleles<br />
->-v snps, keep SNPs only (omits indels and MNPs)<br />
->-i 'F_MISSING < 0.1', include only sites wih less than 10% missing data<br />
->-e 'MAF < 0.05', exclude sites with a minor allele frequency (MAF) of less than 5% (note: skip MAF filtering if you dont want to discard potential rare/novel genotypes)<br />
->--output-type z, output gz compressed vcf<br />
->-o cr_collection.QA.biaSNPs.vcf.gz, output file name<br />
->cr_collection.QA.vcf, input file name<br />
+>_-m2 -M2_, keep sites with min 2 alleles and max 2 alleles<br />
+>_-v snps_, keep SNPs only (omits indels and MNPs)<br />
+>_-i 'F_MISSING < 0.1'_, include only sites wih less than 10% missing data<br />
+>_-e 'MAF < 0.05'_, exclude sites with a minor allele frequency (MAF) of less than 5% (note: skip MAF filtering if you dont want to discard potential rare/novel genotypes)<br />
+>_--output-type z_, output gz compressed vcf<br />
+>_-o cr_collection.QA.biaSNPs.vcf.gz_, output file name<br />
+>_cr_collection.QA.vcf_, input file name<br />
 <br />
 
 **3. subset populations** - we will now subset the US and SA populations from this VCF based on sample names
