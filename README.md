@@ -189,32 +189,11 @@ To save space, uncompresed leftover VCF files can be bgzipped with _samtools_ th
 For context, the SA population is entirely asexual, lacking any recombination, whereas the US population reproduces both sexually and asexually. Therefore, the US population is expected to be more diverse. This is highly evident in the VSS count, which is ~14 times higher than that of the SA population. TSS counts only indicate SNPs against the reference and are heavily influenced by reference choice. Subtracting the VSS from the TSS in the SA population (548,091-47,369) gives ~500K genotypes that were likely already present at the founding of this population, and diversity within this population is represented by only ~47K SNP sites.<br />
 <br />
 
-## Generating chromosome maps with karyoploteR
+## Generating chromosome maps with [karyoploteR](https://github.com/bernatgel/karyoploteR)
 
 preamble/description.
 
-1. step 1:
 
-`single line command/script`
-
-2. step 2:
-```
-multi-line command/script
-multi-line command/script
-```
->further comments/description.
-
-## Generating synteny plots with gggenomes
+## Generating synteny plots with [gggenomes](https://github.com/thackl/gggenomes)
 
 preamble/description.
-
-1. step 1:
-
-`single line command/script`
-
-2. step 2:
-```
-multi-line command/script
-multi-line command/script
-```
->further comments/description.
