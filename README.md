@@ -67,7 +67,7 @@ cat header temp{0..99} > combined.covstats.txt
 rm header temp{0..99}
 ```
 >header names describe the output fields<br />
->final matrix is written to _combined.covstats.txt_<br />
+>final matrix is written to _combined.covstats.txt_ <br />
 >temporary _header_ and _temp_ files are deleted<br />
 <br />
 
@@ -83,7 +83,7 @@ barplot(stats$mean_cov, names=stats$sample, main="mean cov", ylim=c(0,100), las=
 barplot(stats$pcnt_ref_over_10X, names=stats$sample, main="perc bp over 10X", ylim=c(0,100), las=2)
 dev.off()
 ```
->the above can be wrapped in file _plot_covstats.R_ and run as _>Rscript plot_covstats.R_ <br />
+>the above can be wrapped in file _plot_covstats.R_ and run as _>Rscript plot_covstats.R combined.covstats.txt_ <br />
 >this creates two basic barplots, one for mean coverage and another for percent of ref bases over 10X coverage, in a single PNG image<br />
 <br />
 
