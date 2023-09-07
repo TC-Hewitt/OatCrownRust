@@ -181,7 +181,7 @@ cr_pop_SA.vcf | egrep -v "^#" | wc -l
 >_-e ..._, this excludes sites where a count condition is equal to the sample size (_$nUS_ or _$nSA_), i.e. identical genotype (RR=ref/ref hom, RA=ref/alt het, AA=alt/alt hom, Aa=alt/alt het) in every sample. Thus, what remains are only the variable sites<br />
 <br />
 
-To save space, uncompresed leftover VCF files can be bgzipped with _samtools_ then indexed with _bcftools_
+To save space, uncompresed leftover VCF files can be bgzipped with _samtools_ then indexed with _bcftools_ <br />
 `bgzip -@ 4 file.vcf && bcftools index file.vcf.gz`
 >_-@ 4_, num threads to use to perform compression<br />
 <br />
