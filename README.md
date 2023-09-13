@@ -377,6 +377,7 @@ dev.off()
 ```
 ![chrsB_small](https://github.com/TC-Hewitt/OatCrownRust/assets/33470968/19912205-27df-4b14-9097-49b358176bd2)
 
+this illustrates that one of the loci (_loc3B_) overlaps a region that has a positive signal for selection<br />
 <br />
 
 ## Generating synteny plots with [gggenomes](https://github.com/thackl/gggenomes)
