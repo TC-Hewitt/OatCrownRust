@@ -132,7 +132,7 @@ bcftools view -S samplenames_SA.txt cr_collection.QA.biaSNPs.vcf.gz > cr_pop_SA.
 >_-S samplenames_US.txt_, subset US pop using sample names listed in samplenames_US.txt (1 per line)<br />
 >_-S samplenames_SA.txt_, subset SA pop using sample names listed in samplenames_SA.txt<br />
 
-Names must match exactly as present in the VCF file. In case they are not known, it is possible to retrieve them from the VCF with a bash script
+Names must match exactly as present in the VCF file. In case they are not known, it is possible to retrieve them from the VCF with a bash script<br />
 `zcat cr_collection.QA.biaSNPs.vcf.gz | egrep "^#" | tail -1`
 >_zcat_ will print gz compressed files, otherwise use _cat_ if VCF uncompressed<br />
 >_egrep_ will find only header lines (starts with "#")<br />
