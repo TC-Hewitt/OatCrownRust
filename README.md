@@ -327,11 +327,11 @@ kpPlotMarkers(
 
 dev.off()
 ```
->_kp_hapA <- plotKaryotype(...)_, this creates the plot object kp_hapA based on the chr lengths in mygenome and the subset of chrs listed in hapA<br />
+>_kp_hapA <- plotKaryotype(...)_, this creates the plot object _kp_hapA_ based on the chr lengths in _mygenome_ and the subset of chrs listed in _hapA_ <br />
 >_kpPlotRegions(kp_hapA, loci, ...)_, this draws the loci regions overlayed on the chrs<br />
 >_kpPlotRegions(kp_hapA, sweeps, ...)_, this draws the selective sweep regions below the chrs<br />
 >_kpAddBaseNumbers(kp_hapA, ...)_, this adds distance ticks along each chr set 1Mb apart<br />
->_kpPlotMarkers(kp_hapA, chr=labels$chr, x=labels$pos, labels=labels$label, ...)_, this adds text labels to each locus specified by names and coordinates in labels<br />
+>_kpPlotMarkers(kp_hapA, chr=labels$chr, x=labels$pos, labels=labels$label, ...)_, this adds text labels to each locus specified by names and coordinates in _labels_ <br />
 <br />
 
 **7. Plot B chrs** - we will now do the same for the B chrs
