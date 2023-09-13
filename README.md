@@ -193,11 +193,11 @@ For context, the SA population is entirely asexual, lacking any recombination, w
 
 These are instructions to generate simple chromosome maps annotating regions of interest, similar to what appears in the paper figure. More detailed maps incorporating features such as density plots and coverage graphs are covered in the [karyoploteR tutorial](https://bernatgel.github.io/karyoploter_tutorial/). Here we will make basic plots based on a diploid chromosome (chr) set where A and B haplotypes are separated.
 
-**1. Input for chr lengths** - this is simply a tab delim table of chr names, start and end coords which can be obtaind from the .fasta.fai index of the genome FASTA file<br />
+**1. Input for chr lengths** - this is simply a tab delim table of chr names, start and end coords which can be obtaind from the _.fasta.fai_ index of the genome FASTA file<br />
 
 `samtools faidx mygenome.fasta`
 
-the following bash scripts can be used to create a regions table from mygenome.fasta.fai compatible with [GRanges](https://bioconductor.org/packages/3.18/bioc/html/GenomicRanges.html) formatting
+the following bash scripts can be used to create a regions table from _mygenome.fasta.fai_ compatible with [GRanges](https://bioconductor.org/packages/3.18/bioc/html/GenomicRanges.html) formatting
 ```
 printf "chr\tstart\tend\n" > mygenome.granges.txt
 TAB='\t'
@@ -221,7 +221,7 @@ chr6_B  0   5207541
 ```
 <br />
 
-**2. Input for regions of interest** - similarly, we will have a table _loci.granges.txt_ with start and end coordinates for specific loci, with extra fields for locus name and chosen colours as HEX values
+**2. Input for regions of interest** - similarly, we will have a table _loci.granges.txt_ with start and end coords for specific loci, with extra fields for locus name and chosen colours as HEX values
 ```
 chr start   end name    colour
 chr1_A  2140000 2200000 loc1A '#61d04f'
@@ -287,7 +287,7 @@ hapB <- c("chr1_B", "chr2_B", "chr3_B", "chr4_B", "chr5_B", "chr6_B")
 <br />
 
 **6. Plot A chrs** - we will create separate plots for the A and B chrs so they can later be arranged side-by-side (without subsetting, all chrs will be plotted as a single stack).
-We will first initialise an output image _chrsA.svg_ using [svglite](https://github.com/r-lib/svglite) to save the plot as a scalable vector graphic (SVG) that can easily resized and modified in a free SVG editor such as [Inkscape](https://inkscape.org/), then run the plot script
+First initialise an output image _chrsA.svg_ using [svglite](https://github.com/r-lib/svglite) to save the plot as a scalable vector graphic (SVG) that can be easily resized and modified in a free SVG editor such as [Inkscape](https://inkscape.org/), then run the plot script
 ```
 svglite("chrsA.svg", width=8, height=6)
 
@@ -329,10 +329,11 @@ dev.off()
 ```
 >_kp_hapA <- plotKaryotype(...)_, this creates the plot object _kp_hapA_ based on the chr lengths in _mygenome_ and the subset of chrs listed in _hapA_ <br />
 >_kpPlotRegions(kp_hapA, loci, ...)_, this draws the loci regions overlayed on the chrs<br />
->_kpPlotRegions(kp_hapA, sweeps, ...)_, this draws the selective sweep regions below the chrs<br />
+>_kpPlotRegions(kp_hapA, sweeps, ...)_, this draws the selective sweep regions below the chrs (coloured red)<br />
 >_kpAddBaseNumbers(kp_hapA, ...)_, this adds distance ticks along each chr set 1Mb apart<br />
 >_kpPlotMarkers(kp_hapA, chr=labels$chr, x=labels$pos, labels=labels$label, ...)_, this adds text labels to each locus specified by names and coordinates in _labels_ <br />
-<br />
+
+![chrsA_small](https://github.com/TC-Hewitt/OatCrownRust/assets/33470968/b4bc15d7-0b03-45d6-b128-94a61dfd4e42)
 
 **7. Plot B chrs** - we will now do the same for the B chrs
 ```
@@ -374,6 +375,8 @@ kpPlotMarkers(kp_hapB,
 
 dev.off()
 ```
+![chrsB_small](https://github.com/TC-Hewitt/OatCrownRust/assets/33470968/19912205-27df-4b14-9097-49b358176bd2)
+
 <br />
 
 ## Generating synteny plots with [gggenomes](https://github.com/thackl/gggenomes)
