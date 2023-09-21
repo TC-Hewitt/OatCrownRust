@@ -794,8 +794,8 @@ scale_color_manual("cluster", values=getPalette(17), na.value="darkgrey")
 ```
 >_geom_feat_, these are the repeat regions positioned by +/- strand and coloured black<br />
 >_geom_gene_, these are the genes with border and fill according to _cluster_id_ from _my_clusts_sec_ <br />
->_geom_gene_tag_, gene labels from _my_seqs_ using _parent_id_ field so trancript number isnt shown (see step 6)<br />
->_geom_link_line, our custom function (step 13) to link genes with lines instead of polygons<br />
+>_geom_gene_tag_, gene labels from _my_seqs_ using _parent_id_ attribute so trancript number isn't shown (see step 6)<br />
+>_geom_link_line_, our custom function (step 13) to link genes with lines instead of polygons<br />
 >_scale_fill_manual_, assign fill colour to clusters<br />
 >_scale_color_manual_, assign border colour to clusters (matching fill)<br />
 <br />
