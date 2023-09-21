@@ -382,7 +382,7 @@ this illustrates that one of the loci (_loc3B_) overlaps a region that has a pos
 
 ## Generating synteny plots with [gggenomes](https://github.com/thackl/gggenomes)
 
-Here we are creating a synteny plot of genomic regions from three different strains of the same species. One of the assemblies is fully phased into full-length chromosomes, while the other two are partially phased into contigs only. Through GWAS, we have identified significant marker-trait association regions (MTAR) on chromosomes 6 (A and B). We want to visualise annotated gene content and synteny between orthologous regions from all three assemblies. Here, an MTAR is defined as a genomic interval given by the span of SNP markers in an association peak above a _p_-value threshold, which can be retrieved from the output matrix of GWAS programs such as [TASSEL](https://www.maizegenetics.net/tassel).
+Here we are creating a synteny plot of genomic regions from three different strains of the same species. One of the assemblies is fully phased into full-length chromosomes, while the other two are partially phased into contigs only. Through GWAS, we have identified significant marker-trait association regions (MTAR) on chromosomes 6 (A and B). We want to visualise annotated gene content and synteny between orthologous regions from all three assemblies. Here, an MTAR is defined as a genomic interval given by the span of SNP markers above a _p_-value threshold in an association peak, which can be retrieved from the output matrix of GWAS programs such as [TASSEL](https://www.maizegenetics.net/tassel).
 
 ![ROI_from_GWAS](https://github.com/TC-Hewitt/OatCrownRust/assets/33470968/857a35bf-c785-4a87-af56-3ca3bff481e2)
 
