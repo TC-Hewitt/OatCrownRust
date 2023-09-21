@@ -743,7 +743,7 @@ my_loci <- tribble(
   "020F_001", 1, 241894,
 )
 ```
-we can then use the focus function with _my_loci_ to create a new plot object showing only deired regions
+we can then use the focus function with _my_loci_ to create a new plot object showing only desired regions
 ```
 syplot2_flip_focus <- synplot2_flip %>% focus(.track_id=seqs, .loci=my_loci, .locus_id=seq_id)
 ```
