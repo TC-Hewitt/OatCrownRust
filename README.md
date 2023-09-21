@@ -801,13 +801,13 @@ scale_color_manual("cluster", values=getPalette(17), na.value="darkgrey")
 <br />
 
 **15. shift bins for optimal display and save to final plot _synplot4_** <br />
-by default the seq bins are left-justified but this can make the links look stretched, so we can automatically centre the bins
-```
-synplot4 <- synplot3 %>% shift(bins=c(1,2,4,6), by=c(50000, 50000, 25000, 50000))
-```
-alternatively, it is easy to manually shift bins horizontally (this may take trial-and-error and plot scale bar can be used as an aid)
+by default, the seq bins are left-justified but this can make the links look stretched; we can automatically centre the bins if desired
 ```
 synplot4 <- synplot3 %>% shift(center=TRUE)
+```
+alternatively, it is easy to manually shift bins horizontally (this may take trial-and-error but plot scale bar can be used as an aid)
+```
+synplot4 <- synplot3 %>% shift(bins=c(1,2,4,6), by=c(50000, 50000, 25000, 50000))
 ```
 
 ![synplot_exp5_small](https://github.com/TC-Hewitt/OatCrownRust/assets/33470968/a8bb91a2-ff44-4775-8a22-a59f2867fcef)
@@ -817,4 +817,4 @@ now we are happy with our synteny plot, we can save it as an SVG by invoking _sv
 ```
 ggsave(file="MTAR_6_synteny_plot.svg", device=svg, plot=synplot4, width=12, height=6)
 ```
->in the above plot, only gene labels for the first bin are shown for simplicity, coordinates were manually added to the labels for _chr6_A_, _chr6_B_ and _020F_, some superfluous minor homolgy links were removed for cleaner visuals, and scale bar was reduced to show one increment. The benefit of saving as SVG is that small adjustments and fixes like these are easy to do in a free SVG editor like [Inkscape](https://inkscape.org/)
+>in the above plot, only gene labels for the first bin are shown for simplicity, coordinates were manually added to the labels for _chr6_A_, _chr6_B_ and _020F_, some superfluous minor homolgy links were removed for cleaner visuals, and scale bar was reduced to show just one increment. The benefit of saving as SVG is that small adjustments and fixes like these are easy to do in a free SVG editor like [Inkscape](https://inkscape.org/)
