@@ -560,7 +560,7 @@ grep "secreted" MTAR_6_allseqs.mrna.gff \
 >_sed -r ..._, regex operation discards all chars except those matching group 1 (any consecutive chars after "id=" except ";" in the parentheses)<br />
 <br />
 
-we will then use the IDs extract the orthogroups from _Orthogroups.txt_ and write to a temp file; this will pull out all the genes of an orthogroup, as long as the group contains at least one secreted member in _MTAR_6_allseqs.secreted.txt_ (this is desirable since we may want to know if the secretion state varies between orthologs of different assemblies/strains)
+we will then use the IDs to extract the orthogroups from _Orthogroups.txt_ and write to a temp file; this will pull out all the genes of an orthogroup, as long as the group contains at least one secreted member in _MTAR_6_allseqs.secreted.txt_ (this is desirable since we may want to know if the secretion state varies between orthologs of different assemblies/strains)
 ```
 for i in $(cat MTAR_allseqs.secreted.txt) 
 do
