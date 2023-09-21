@@ -409,7 +409,8 @@ In our example, the orthologous contigs (orthotigs) in _12SD80_refassem.fa_ and 
 000020F_001
 ```
 
-We also have previously generated annotations for each assembly in the form of GFF files containing predicted gene models, and for _mygenome.fasta_, an additional GFF file for sequence repeats. We will first prepare all the inputs in UNIX/bash before moving to RStudio to make the synteny plot.
+We also have previously generated annotations for each assembly in the form of GFF files containing predicted gene models, and for _mygenome.fasta_, an additional GFF file for sequence repeats. We will first prepare all the inputs in UNIX/bash before moving to RStudio to make the synteny plot.<br />
+<br />
 
 **1. retrieve MTAR and orthotig sequences**<br />
 extract MTAR seqs from _mygenome.fasta_ for each haplotype (A and B)
@@ -472,7 +473,7 @@ do
     grep "^$i\s.*mRNA" 12NC29_refassem.models.gff3 >> MTAR_6_12NC29_orthotigs.mrna.gff
 done
 ```
-
+<br />
 
 **3. compile fasta files and annotation files of MTARs and orthotigs for later export to RStudio**<br />
 combine MTAR and orthotig fastas to _MTAR_6_allseqs.fa_
@@ -494,8 +495,8 @@ MTAR_6_12NC29_orthotigs.mrna.gff \
 > MTAR_6_allseqs.mrna.gff
 ```
 
-since we only have repeat annotations for the MTARs, we do not need to combine them with those of the orthotigs (unavailable)
-
+since we only have repeat annotations for the MTARs, we do not need to combine them with those of the orthotigs (unavailable)<br />
+<br />
 
 **4. perform an all-vs-all alignment of _MTAR_6_allseqs.fa_ with [Minimap2](https://github.com/lh3/minimap2)** <br />
 the PAF output will be later used for drawing links between regions in the synteny plot
@@ -541,6 +542,7 @@ the output we want is for our purposes is found in _translated/OrthoFinder/Resul
 ./Orthogroups_txtConvert.py -i translated/OrthoFinder/Results_?????/Orthogroups/Orthogroups.txt \
 > MTAR_6_allseqs.orthogroups.txt
 ```
+<br />
 
 **6. pull out only secreted subset from orthogroups**<br />
 in this example, we are particularly interested in genes that encode secreted proteins and want to highlight these in our synteny plot later; here they are denoted by the string "secreted" in the attribute field (column 9) of the gff files; for example, column 9 of a single gene record in _MTAR_6_allseqs.mrna.gff_ looks like the following:
@@ -574,7 +576,8 @@ we can now convert this to a desirable format using _Orthogroups_txtConvert.py_ 
 ./Orthogroups_txtConvert.py -i temp2.txt > MTAR_6_allseqs.orthogroups.secreted.txt
 rm temp1.txt temp2.txt
 ```
-_MTAR_6_allseqs.orthogroups.secreted.txt_ now contains only proteins that are either secreted or belong to the same orthogroup as a secreted protein
+_MTAR_6_allseqs.orthogroups.secreted.txt_ now contains only proteins that are either secreted or belong to the same orthogroup as a secreted protein<br />
+<br />
 
 **7. create zip folder of all input files for export to Rstudio**<br />
 now all input files for our synteny plot are ready, we will zip them in _exportR_ for easy transfer to RStudio
@@ -597,7 +600,8 @@ now in RStudio, we want to draw a synteny plot using _gggenomes_ with the follow
 - lines between adjacent sequences linking genes of the same orthogroup
 - gene labels (secreted only) 
 
-the following was conducted in RStudio using R 4.0.2 and gggenomes 0.9.5.9000
+the following was conducted in RStudio using R 4.0.2 and gggenomes 0.9.5.9000<br />
+<br />
 
 **8. load libraries and read in input files**
 ```
@@ -649,7 +653,8 @@ for example, this plots the A and B MTARs along with orthotigs from _12SD80_. Ho
 ![synplot_exp1](https://github.com/TC-Hewitt/OatCrownRust/assets/33470968/f7c40d1e-dd1d-4da0-bd57-bab18ca2080b)
 
 
-on first look we can see the plot may benefit from alternative ordering and orientation of seqs. For instance, contigs _065F_003_ and _065F_004_ appear to align side-by-side against the larger _065F_ contig, meaning they should be placed in the same bin (each bin representing an inferred haplotype). By default, all seqs are plotted as a single stack unless they are assigned to bins allowing seqs to be positioned in series
+on first look we can see the plot may benefit from alternative ordering and orientation of seqs. For instance, contigs _065F_003_ and _065F_004_ appear to align side-by-side against the larger _065F_ contig, meaning they should be placed in the same bin (each bin representing an inferred haplotype). By default, all seqs are plotted as a single stack unless they are assigned to bins allowing seqs to be positioned in series<br />
+<br />
 
 **10. assign seqs to bins and create a new plot**<br />
 first we need to know the lengths of our seqs to enter into the table. These can be found in the _my_seqs_ object created earlier
@@ -709,7 +714,8 @@ synplot2 <- gggenomes(
 ![synplot_exp2](https://github.com/TC-Hewitt/OatCrownRust/assets/33470968/7bb20abd-d5b1-472f-bafc-8d03fb238211)
 
 
-our seqs are now ordered the way we want, except their orientations are still mismatched
+our seqs are now ordered the way we want, except their orientations are still mismatched<br />
+<br />
 
 **11. flip seqs to match orientations**<br />
 we can see the alignment can be fixed by flipping seqs _065F_, _065F_004_ and _065F_003_, which are seq numbers 3, 4 and 5, corresponding to the order they are listed in _my_bins_. We assign the untwisted alignment to a new plot object
@@ -720,7 +726,8 @@ synplot2_flip <- synplot2 %>% flip_seqs(3, 4, 5)
 ![synplot_exp3](https://github.com/TC-Hewitt/OatCrownRust/assets/33470968/2611676c-0c5f-43e8-82b3-9a712155256b)
 
 
-it is now looking much better, but seq _020F_ is showing some unaligned flanking regions which we might want to trim
+it is now looking much better, but seq _020F_ is showing some unaligned flanking regions which we might want to trim<br />
+<br />
 
 **12. assign seq boundaries to plot only desired regions**<br />
 we can create a table defining the start and end coordinates of each seq region we want to show. Note that coordinates are always based on the original seqs (unflipped), so the previous _synplot2_ can be used a reference when defining region coordinates. The default length bar at the bottom can be used as a guide.
@@ -744,7 +751,8 @@ syplot2_flip_focus <- synplot2_flip %>% focus(.track_id=seqs, .loci=my_loci, .lo
 ![synplot_exp4](https://github.com/TC-Hewitt/OatCrownRust/assets/33470968/4304ba3e-0f8c-472d-b8da-7f7e1ce0dff7)
 
 
-now that we have a bare plot combining our desired ordering, orientation and boundaries, we can start adding features and aesthetics
+now that we have a bare plot combining our desired ordering, orientation and boundaries, we can start adding features and aesthetics<br />
+<br />
 
 **13. modify package functions for custom fill and links**<br />
 by default, _gggenomes_ function _geom_gene()_ draws features of type "mRNA" from a gff with a lightened color scheme. However, we want our genes to have full solid colour. To temporarily disable automatic lighten,  open and edit the _geom_gene()_ code in the console using `trace(gggenomes::geom_gene, edit=TRUE)`. Now in the text editor window, change the line `rna_def <- aes(fill = colorspace::lighten(fill, .5), color = colorspace::lighten(colour, .5))` to simply `rna_def <- aes()`<br />
@@ -762,10 +770,11 @@ geom_link_line <- function(mapping = NULL, data = links(), stat = "identity",
         params = list(na.rm = na.rm, ...))
 }
 ```
-we can now include this function when adding features to the plot
+we can now include this function when adding features to the plot<br />
+<br />
 
 **14. add features and custom aesthetics**<br />
-we want to colour only secreted genes according to orthgroup (OG) cluster so first setup a colour palette to use. From [_RColorBrewer_](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html) well use _Set1_, which has 9 discrete colours but we can expand it with a colour ramp as _my_clusts_sec_ has 17 OGs
+we want to colour only secreted genes according to orthgroup (OG) cluster so first setup a colour palette to use. From [_RColorBrewer_](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html) we'll use _Set1_, which has 9 discrete colours but we can expand it with a colour ramp as _my_clusts_sec_ has 17 OGs
 ```
 library(RColorBrewer)
 getPalette = colorRampPalette(brewer.pal(8, "Set1")) #use only fist 8 colours (as 9th is grey)
@@ -789,8 +798,9 @@ scale_color_manual("cluster", values=getPalette(17), na.value="darkgrey")
 >_geom_link_line, our custom function (step 13) to link genes with lines instead of polygons<br />
 >_scale_fill_manual_, assign fill colour to clusters<br />
 >_scale_color_manual_, assign border colour to clusters (matching fill)<br />
+<br />
 
-**15. shift bins for optimal display and save to final plot _synplot4_**<br />
+**15. shift bins for optimal display and save to final plot _synplot4_** <br />
 by default the seq bins are left-justified but this can make the links look stretched, so we can automatically centre the bins
 ```
 synplot4 <- synplot3 %>% shift(bins=c(1,2,4,6), by=c(50000, 50000, 25000, 50000))
@@ -807,4 +817,4 @@ now we are happy with our synteny plot, we can save it as an SVG by invoking _sv
 ```
 ggsave(file="MTAR_6_synteny_plot.svg", device=svg, plot=synplot4, width=12, height=6)
 ```
->in the above plot, only gene labels for the first bin are shown for simplicity, coordinates were manually added to the labels for _chr6_A_, _chr6_B_ and _020F_, and some superfluous minor homolgy links were removed for cleaner visuals. The benefit of saving as SVG is that small adjustments and fixes like these are easy to do in a free SVG editor like [Inkscape](https://inkscape.org/)
+>in the above plot, only gene labels for the first bin are shown for simplicity, coordinates were manually added to the labels for _chr6_A_, _chr6_B_ and _020F_, some superfluous minor homolgy links were removed for cleaner visuals, and scale bar was reduced to show one increment. The benefit of saving as SVG is that small adjustments and fixes like these are easy to do in a free SVG editor like [Inkscape](https://inkscape.org/)
