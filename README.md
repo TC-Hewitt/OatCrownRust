@@ -537,7 +537,7 @@ orthofinder -a 4 -f translated/
 >_-f_, dir containing fasta proteomes<br />
 <br />
 
-the output we want is for our purposes is found in _translated/OrthoFinder/Results_?????/Orthogroups/Orthogroups.txt_ where the wildcard "?????" substitutes for the date the orthofinder output was created (e.g. "Feb28"); _Orthogroups.txt_ is not in a tractable format, so we can convert it to long format using [_Orthogroups_txtConvert.py_](https://github.com/TC-Hewitt/OatCrownRust/blob/main/Orthogroups_txtConvert.py) for later use in R
+the output we want for our purposes is found in _translated/OrthoFinder/Results_?????/Orthogroups/Orthogroups.txt_ where the wildcard "?????" substitutes for the date the orthofinder output was created (e.g. "Feb28"); _Orthogroups.txt_ is not in a tractable format, so we can convert it to long format using [_Orthogroups_txtConvert.py_](https://github.com/TC-Hewitt/OatCrownRust/blob/main/Orthogroups_txtConvert.py) for later use in R
 ```
 ./Orthogroups_txtConvert.py -i translated/OrthoFinder/Results_?????/Orthogroups/Orthogroups.txt \
 > MTAR_6_allseqs.orthogroups.txt
