@@ -777,7 +777,7 @@ we can now include this function when adding features to the plot<br />
 we want to colour only secreted genes according to orthgroup (OG) cluster so first setup a colour palette to use. From [_RColorBrewer_](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html) we'll use _Set1_, which has 9 discrete colours but we can expand it with a colour ramp as _my_clusts_sec_ has 17 OGs
 ```
 library(RColorBrewer)
-getPalette = colorRampPalette(brewer.pal(8, "Set1")) #use only fist 8 colours (as 9th is grey)
+getPalette = colorRampPalette(brewer.pal(8, "Set1"))
 ```
 >only using the first 8 colours of _Set1_ since the 9th colour is grey, which we want for _na.values_, i.e. all other genes not in _my_clusts_sec_<br />
 <br />
