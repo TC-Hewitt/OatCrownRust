@@ -817,4 +817,6 @@ now we are happy with our synteny plot, we can save it as an SVG by invoking _sv
 ```
 ggsave(file="MTAR_6_synteny_plot.svg", device=svg, plot=synplot4, width=12, height=6)
 ```
->in the above plot, only gene labels for the first bin are shown for simplicity, coordinates were manually added to the labels for _chr6_A_, _chr6_B_ and _020F_, some superfluous minor homolgy links were removed for cleaner visuals, and scale bar was reduced to show just one increment. The benefit of saving as SVG is that small adjustments and fixes like these are easy to do in a free SVG editor like [Inkscape](https://inkscape.org/)
+>in the above plot, only gene labels for the first bin are shown for simplicity, coordinates were manually added to the labels for _chr6_A_, _chr6_B_ and _020F_, some superfluous minor homolgy links were removed for cleaner visuals, and scale bar was reduced to show just one increment. The benefit of saving as SVG is that small adjustments and fixes like these are easy to do in a free SVG editor like [Inkscape](https://inkscape.org/) <br />
+<br />
+more plotting capabilities can be found in the [_gggenomes_ tutorial](https://thackl.github.io/gggenomes/articles/emales.html) 
